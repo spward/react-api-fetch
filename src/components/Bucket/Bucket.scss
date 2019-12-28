@@ -1,0 +1,13 @@
+.Bucket {
+  margin-top: 7em;
+  display: flex;
+  padding-left: 2rem;
+
+  &__info {
+    flex-direction: column;
+  }
+}
+
+h3 {
+  font-size: 2rem;
+}
