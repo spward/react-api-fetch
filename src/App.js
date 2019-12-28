@@ -1,22 +1,38 @@
 import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Buckets from "./components/Bucket";
-import axios from "axios";
-import apiConfig from "./config/apiConfig";
 import { connect } from "react-redux";
-import { fetchBuckets } from "../../store/Buckets/actions";
+import { fetchBuckets } from "./store/Buckets/actions";
 
 const App = () => {
-  useEffect(() => {
-    dispatch(fetchBuckets());
-  }, []);
+  const { error, loading, buckets } = props;
+
+  if (error) {
+    return <div>Error! {error.message}</div>;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="App">
       <Header />
-      <Buckets buckets={buckets} items={items} />
+      {buckets.map(bucket => (
+        <li key={bucket.bucketId}>{bucket.description}</li>
+      ))}
     </div>
   );
 };
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  dispatch(fetchBuckets);
+};
+
+const mapStateToProps = state => ({
+  buckets: state.buckets.items,
+  loading: state.buckets.loading,
+  error: state.buckets.error
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

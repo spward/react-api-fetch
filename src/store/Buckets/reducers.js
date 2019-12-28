@@ -23,7 +23,7 @@ const bucketsReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        items: action.payload.products
+        items: action.payload.buckets
       };
     case FETCH_BUCKETS_FAILURE:
       return {
