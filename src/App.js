@@ -1,38 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Header from "./components/Header";
 import Buckets from "./components/Bucket";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchBuckets } from "./store/Buckets/actions";
+import { useEffect } from "react";
 
-const App = () => {
-  const { error, loading, buckets } = props;
+const App = ({ props }) => {
+  const buckets = useSelector(state => ({
+    buckets: state.buckets.buckets,
+    loading: state.buckets.loading,
+    error: state.buckets.error
+  }));
 
-  if (error) {
-    return <div>Error! {error.message}</div>;
-  }
+  const dispatch = useDispatch(fetchBuckets);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => dispatch, [dispatch]);
 
   return (
     <div className="App">
       <Header />
-      {buckets.map(bucket => (
-        <li key={bucket.bucketId}>{bucket.description}</li>
-      ))}
+      {buckets.buckets}
     </div>
   );
 };
 
-const mapDispatchToProps = dispatch => {
-  dispatch(fetchBuckets);
-};
-
-const mapStateToProps = state => ({
-  buckets: state.buckets.items,
-  loading: state.buckets.loading,
-  error: state.buckets.error
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
