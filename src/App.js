@@ -3,23 +3,37 @@ import Header from "./components/Header";
 import Buckets from "./components/Bucket";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBuckets } from "./store/Buckets/actions";
+import { fetchItems } from "./store/Items/actions";
+
 import { useEffect } from "react";
 
-const App = ({ props }) => {
-  const buckets = useSelector(state => ({
+const App = () => {
+  const { buckets, loading, error, items } = useSelector(state => ({
     buckets: state.buckets.buckets,
+    items: state.items.items,
     loading: state.buckets.loading,
     error: state.buckets.error
   }));
 
-  const dispatch = useDispatch(fetchBuckets);
+  const dispatch = useDispatch();
 
-  useEffect(() => dispatch, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchBuckets());
+    dispatch(fetchItems());
+  }, [dispatch]);
+
+  if (error) {
+    return <div>Error! {error.message}</div>;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="App">
       <Header />
-      {buckets.buckets}
+      <Buckets buckets={buckets} items={items} />
     </div>
   );
 };

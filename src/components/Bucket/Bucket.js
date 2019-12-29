@@ -15,7 +15,7 @@ const Bucket = ({ buckets, items }) => {
     <div className="Bucket">
       {buckets.map(bucket => (
         <div className="Bucket__info" key={bucket.bucketId}>
-          <h3>{bucket.description}</h3>
+          <h3>{bucket.itemTitle}</h3>
           <Item items={itemByBucketId(bucket.bucketId)} key={bucket.bucketId} />
         </div>
       ))}

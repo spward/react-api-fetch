@@ -1,36 +1,36 @@
 import {
-  FETCH_BUCKETS_BEGIN,
-  FETCH_BUCKETS_SUCCESS,
-  FETCH_BUCKETS_FAILURE
+  FETCH_ITEMS_BEGIN,
+  FETCH_ITEMS_SUCCESS,
+  FETCH_ITEMS_FAILURE
 } from "./actions";
 
-const initialitemsState = {
-  buckets: [],
+const initialItemsState = {
+  items: [],
   loading: false,
   error: null
 };
 
-const itemsReducer = (state = initialitemsState, action) => {
+const itemsReducer = (state = initialItemsState, action) => {
   switch (action.type) {
-    case FETCH_BUCKETS_BEGIN:
+    case FETCH_ITEMS_BEGIN:
       return {
         ...state,
         loading: true,
         error: null
       };
 
-    case FETCH_BUCKETS_SUCCESS:
+    case FETCH_ITEMS_SUCCESS:
       return {
         ...state,
         loading: false,
-        buckets: action.payload.data
+        items: action.payload.data
       };
-    case FETCH_BUCKETS_FAILURE:
+    case FETCH_ITEMS_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload.error,
-        buckets: []
+        items: []
       };
     default:
       return state;
