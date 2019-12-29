@@ -21,9 +21,9 @@ export function fetchItems() {
 //   return response;
 // }
 
-export const FETCH_ITEMS_BEGIN = "FETCH_BEGIN";
-export const FETCH_ITEMS_SUCCESS = "FETCH_SUCCESS";
-export const FETCH_ITEMS_FAILURE = "FETCH_FAILURE";
+export const FETCH_ITEMS_BEGIN = "FETCH_ITEMS_BEGIN";
+export const FETCH_ITEMS_SUCCESS = "FETCH_ITEMS_SUCCESS";
+export const FETCH_ITEMS_FAILURE = "FETCH_ITEMS_FAILURE";
 
 export const fetchItemsBegin = () => ({
   type: FETCH_ITEMS_BEGIN

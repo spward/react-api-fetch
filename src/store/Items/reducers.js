@@ -23,7 +23,7 @@ const itemsReducer = (state = initialItemsState, action) => {
       return {
         ...state,
         loading: false,
-        items: action.payload.data
+        items: action.payload.items
       };
     case FETCH_ITEMS_FAILURE:
       return {

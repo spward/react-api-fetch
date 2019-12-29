@@ -21,9 +21,9 @@ export function fetchBuckets() {
 //   return response;
 // }
 
-export const FETCH_BUCKETS_BEGIN = "FETCH_BEGIN";
-export const FETCH_BUCKETS_SUCCESS = "FETCH_SUCCESS";
-export const FETCH_BUCKETS_FAILURE = "FETCH_FAILURE";
+export const FETCH_BUCKETS_BEGIN = "FETCH_BUCKETS_BEGIN";
+export const FETCH_BUCKETS_SUCCESS = "FETCH_BUCKETS_SUCCESS";
+export const FETCH_BUCKETS_FAILURE = "FETCH_BUCKETS_FAILURE";
 
 export const fetchBucketsBegin = () => ({
   type: FETCH_BUCKETS_BEGIN
